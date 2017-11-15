@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">AsciiBoard</string>
+    <string name="random_ime_name">ASCII Board</string>
+    <string name="btn_enable">Enable</string>
+    <string name="btn_select">Select</string>
+    <string name="txt_testfield">Test the keyboard here</string>
+
+    <string name="lbl_subtype_ascii_face">ASCII Faces</string>
+</resources>
