@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Keyboard xmlns:android="http://schemas.android.com/apk/res/android"
+    android:keyWidth="100%p"
+    android:keyHeight="100px">
+
+    <Row>
+        <Key android:codes="1" android:keyLabel="¯\\_(ツ)_/¯"/>
+    </Row>
+    <Row>
+        <Key android:codes="2" android:keyLabel="ಠ_ಠ"/>
+    </Row>
+    <Row>
+        <Key android:codes="3" android:keyLabel="( ͡° ͜ʖ ͡°)"/>
+    </Row>
+    <Row>
+        <Key android:codes="4" android:keyLabel="ʕ•ᴥ•ʔ"/>
+    </Row>
+    <Row>
+        <Key android:codes="-4" android:keyLabel="DONE" android:keyEdgeFlags="left"/>
+        <Key android:codes="32" android:keyLabel="SPACE"/>
+        <Key android:codes="-5" android:keyLabel="DEL" android:isRepeatable="true" android:keyEdgeFlags="right"/>
+    </Row>
+
+</Keyboard>

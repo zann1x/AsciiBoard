@@ -3,6 +3,7 @@ package com.zann1x.asciiboard;
 import android.inputmethodservice.InputMethodService;
 import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.KeyboardView;
+import android.media.AudioManager;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputConnection;
@@ -15,30 +16,63 @@ public class MainInputService extends InputMethodService implements KeyboardView
     private AsciiBoard asciiBoard;
     private AsciiBoardView asciiBoardView;
 
+    // https://textfac.es/
+    // https://www.npmjs.com/package/cool-ascii-faces
+    private String asciiFaces[] = {
+            "<empty_string>",
+            "¯\\_(ツ)_/¯",
+            "ಠ_ಠ",
+            "( ͡° ͜ʖ ͡°)",
+            "ʕ•ᴥ•ʔ"
+    };
+
     @Override
     public void onCreate() {
         super.onCreate();
+        /*
         inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
         inputMethodManager.showInputMethodPicker();
+        */
     }
 
     @Override
     public void onInitializeInterface() {
-        /*if (asciiBoard == null) {
-            asciiBoard = new AsciiBoard(this, R.xml.ascii);
-        }*/
+        if (asciiBoard == null) {
+            asciiBoard = new AsciiBoard(this, R.xml.asciiface);
+        }
     }
 
     @Override
     public View onCreateInputView() {
-        asciiBoard = new AsciiBoard(this, R.xml.ascii);
+        asciiBoard = new AsciiBoard(this, R.xml.asciiface);
 
         asciiBoardView = (AsciiBoardView) getLayoutInflater().inflate(R.layout.keyboard, null);
-        asciiBoardView.setOnKeyboardActionListener(this);
         asciiBoardView.setKeyboard(asciiBoard);
+        asciiBoardView.setOnKeyboardActionListener(this);
 
         return asciiBoardView;
     }
+
+    /*
+    private void playClick(int keyCode) {
+        AudioManager audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
+
+        switch(keyCode) {
+            case 32:
+                audioManager.playSoundEffect(AudioManager.FX_KEYPRESS_SPACEBAR);
+                break;
+            case Keyboard.KEYCODE_DONE:
+            case 10:
+                audioManager.playSoundEffect(AudioManager.FX_KEYPRESS_RETURN);
+                break;
+            case Keyboard.KEYCODE_DELETE:
+                audioManager.playSoundEffect(AudioManager.FX_KEYPRESS_DELETE);
+                break;
+            default:
+                audioManager.playSoundEffect(AudioManager.FX_KEYPRESS_STANDARD);
+        }
+    }
+    */
 
     // Implementation of KeyboardView.OnKeyboardActionListener
 
@@ -55,10 +89,21 @@ public class MainInputService extends InputMethodService implements KeyboardView
     @Override
     public void onKey(int primaryCode, int[] keyCodes) {
         InputConnection inputConnection = getCurrentInputConnection();
+
+        String text = null;
+        if (0 <= primaryCode && primaryCode <= asciiFaces.length)
+            text = asciiFaces[primaryCode];
+
         switch(primaryCode) {
+            case Keyboard.KEYCODE_DONE:
+                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER));
+                break;
+            case Keyboard.KEYCODE_DELETE:
+                inputConnection.deleteSurroundingText(1, 0);
+                break;
             default:
                 char code = (char) primaryCode;
-                inputConnection.commitText(String.valueOf(code), 1);
+                inputConnection.commitText(String.valueOf(text == null ? code : text), 1);
         }
     }
 
