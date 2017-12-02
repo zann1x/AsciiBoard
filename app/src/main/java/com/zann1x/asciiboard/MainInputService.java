@@ -23,7 +23,11 @@ public class MainInputService extends InputMethodService implements KeyboardView
             "¯\\_(ツ)_/¯",
             "ಠ_ಠ",
             "( ͡° ͜ʖ ͡°)",
-            "ʕ•ᴥ•ʔ"
+            "ʕ•ᴥ•ʔ",
+            "(ᵔᴥᵔ)",
+            "ʅʕ•ᴥ•ʔʃ",
+            "༼ つ ◕_◕ ༽つ",
+            "♥‿♥"
     };
 
     @Override
@@ -51,6 +55,11 @@ public class MainInputService extends InputMethodService implements KeyboardView
         asciiBoardView.setOnKeyboardActionListener(this);
 
         return asciiBoardView;
+    }
+
+    @Override
+    public View onCreateCandidatesView() {
+        return super.onCreateCandidatesView();
     }
 
     /*
@@ -100,6 +109,8 @@ public class MainInputService extends InputMethodService implements KeyboardView
                 break;
             case Keyboard.KEYCODE_DELETE:
                 inputConnection.deleteSurroundingText(1, 0);
+                break;
+            case 42: // magical button in the last row of the keyboard that does nothing
                 break;
             default:
                 char code = (char) primaryCode;
