@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.zann1x.asciiboard", appContext.getPackageName());
+        assertEquals("com.zann1x.mainboard", appContext.getPackageName());
     }
 }
