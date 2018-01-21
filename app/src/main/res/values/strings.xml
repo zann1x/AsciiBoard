@@ -6,4 +6,9 @@
     <string name="txt_testfield">Test the keyboard here</string>
 
     <string name="lbl_subtype_ascii_face">ASCII Faces</string>
+
+    <string name="globe_icon">&#x1f310;</string>
+    <string name="open_box">&#x2423;</string>
+    <string name="erase_to_the_left">&#x232b;</string>
+    <string name="return_symbol">&#x23ce;</string>
 </resources>

@@ -4,10 +4,10 @@
     android:keyHeight="50dp">
 
     <Row>
-        <Key android:codes="42" android:keyLabel="MAGIC" android:keyEdgeFlags="left"/>
-        <Key android:codes="32" android:keyLabel="SPACE"/>
-        <Key android:codes="-4" android:keyLabel="DONE"/>
-        <Key android:codes="-5" android:keyLabel="DEL" android:isRepeatable="true" android:keyEdgeFlags="right"/>
+        <Key android:codes="42" android:keyLabel="@string/globe_icon" android:keyWidth="15%p" android:keyEdgeFlags="left" />
+        <Key android:codes="32" android:keyLabel="@string/open_box" android:keyWidth="55%p"/>
+        <Key android:codes="-5" android:keyLabel="@string/erase_to_the_left" android:isRepeatable="true" android:keyWidth="15%p"/>
+        <Key android:codes="-4" android:keyLabel="@string/return_symbol" android:keyWidth="15%p" android:keyEdgeFlags="right"/>
     </Row>
 
 </Keyboard>
