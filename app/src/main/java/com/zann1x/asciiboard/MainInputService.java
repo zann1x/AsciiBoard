@@ -9,6 +9,7 @@ import android.renderscript.ScriptGroup;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputConnection;
@@ -77,26 +78,26 @@ public class MainInputService extends InputMethodService implements KeyboardView
         if (0 <= primaryCode && primaryCode < AsciiFaceData.asciiFaces.size())
             text = AsciiFaceData.asciiFaces.get(primaryCode);
 
-        /*
-        Bug: when AsciiFaceData.asciiFaces gets bigger in the future, the key codes of the
-                space and the keyboard switch key interfere with the values that are tried
-                to retrieved from the asciiFaces list
-                 --> keyboard switch instead of ascii face
-                 --> ascii face instead of space
-         */
         switch(primaryCode) {
             case Keyboard.KEYCODE_DONE:
                 inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER));
                 break;
             case Keyboard.KEYCODE_DELETE:
-                inputConnection.deleteSurroundingText(1, 0);
+                CharSequence selectedText = inputConnection.getSelectedText(0);
+                if(TextUtils.isEmpty(selectedText))
+                    inputConnection.deleteSurroundingText(1, 0);
+                else
+                    inputConnection.commitText("", 1);
                 break;
-            case 42: // switch to the next input method
-                inputMethodManager.switchToNextInputMethod(getWindow().getWindow().getAttributes().token, false);
+            case -32: // space
+                inputConnection.commitText(" " , 1);
+                break;
+            case -42: // switch to the next input method
+                IBinder imeToken = getWindow().getWindow().getAttributes().token;
+                inputMethodManager.switchToNextInputMethod(imeToken, false);
                 break;
             default:
-                char code = (char) primaryCode;
-                inputConnection.commitText(String.valueOf(text == null ? code : text), 1);
+                inputConnection.commitText(String.valueOf((text == null) ? (char) primaryCode : text), 1);
         }
     }
 
