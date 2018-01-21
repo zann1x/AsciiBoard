@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Keyboard xmlns:android="http://schemas.android.com/apk/res/android"
+    android:keyWidth="100%p"
+    android:keyHeight="50dp">
+
+    <Row>
+        <Key android:codes="42" android:keyLabel="MAGIC" android:keyEdgeFlags="left"/>
+        <Key android:codes="32" android:keyLabel="SPACE"/>
+        <Key android:codes="-4" android:keyLabel="DONE"/>
+        <Key android:codes="-5" android:keyLabel="DEL" android:isRepeatable="true" android:keyEdgeFlags="right"/>
+    </Row>
+
+</Keyboard>

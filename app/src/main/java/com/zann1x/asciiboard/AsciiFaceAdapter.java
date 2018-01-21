@@ -1,5 +1,6 @@
 package com.zann1x.asciiboard;
 
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,8 +23,10 @@ public class AsciiFaceAdapter extends RecyclerView.Adapter<AsciiFaceHolder> {
     public AsciiFaceHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         TextView textView = (TextView) LayoutInflater.from(parent.getContext()).inflate(R.layout.recycleritem, parent, false);
         textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        textView.setTextSize(30.f);
+        textView.setTextSize(32.f);
         textView.setVerticalScrollBarEnabled(true);
+        textView.setTextColor(Color.BLACK);
+
         return new AsciiFaceHolder(textView);
     }
 

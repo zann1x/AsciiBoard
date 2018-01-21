@@ -17,6 +17,7 @@ public class MainInputService extends InputMethodService implements KeyboardView
     private LinearLayout mainBoard;
     private ScrollView scrollView;
     private RecyclerView asciiBoardView;
+    private KeyboardView keyboardView;
 
     private AsciiFaceData asciiFaceData = new AsciiFaceData();
 
@@ -28,7 +29,6 @@ public class MainInputService extends InputMethodService implements KeyboardView
     @Override
     public View onCreateInputView() {
         mainBoard = (LinearLayout) getLayoutInflater().inflate(R.layout.mainboard, null);
-        scrollView = mainBoard.findViewById(R.id.scrollview);
 
         asciiBoardView = (RecyclerView) getLayoutInflater().inflate(R.layout.recyclerview, null);
         asciiBoardView.setHasFixedSize(true);
@@ -36,7 +36,13 @@ public class MainInputService extends InputMethodService implements KeyboardView
         asciiBoardView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         asciiBoardView.setAdapter(new AsciiFaceAdapter(this, asciiFaceData.asciiFaces));
 
+        scrollView = mainBoard.findViewById(R.id.scrollview);
         scrollView.addView(asciiBoardView);
+
+        keyboardView = mainBoard.findViewById(R.id.keyboardview);
+        keyboardView.setKeyboard(new Keyboard(this, R.xml.keyboard));
+        keyboardView.setOnKeyboardActionListener(this);
+        keyboardView.setPreviewEnabled(false);
 
         return mainBoard;
     }
@@ -73,7 +79,7 @@ public class MainInputService extends InputMethodService implements KeyboardView
             case Keyboard.KEYCODE_DELETE:
                 inputConnection.deleteSurroundingText(1, 0);
                 break;
-            case 42: // magical button in the last row of the asciiboard that does nothing
+            case 42: // magical button in the last row of the keyboard that does nothing
                 break;
             default:
                 char code = (char) primaryCode;

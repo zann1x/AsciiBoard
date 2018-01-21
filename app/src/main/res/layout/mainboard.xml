@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="#ffffff">
+    android:background="#ffffff"
+    android:layout_margin="0dp"
+    android:padding="0dp">
 
     <ScrollView
         android:id="@+id/scrollview"
@@ -14,15 +16,25 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#ffffff"
-        android:gravity="left|center"
-        android:orientation="horizontal"
-        android:padding="6dp">
+        android:gravity="center">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/asciiboardview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <android.inputmethodservice.KeyboardView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/keyboardview" />
 
     </LinearLayout>
 
