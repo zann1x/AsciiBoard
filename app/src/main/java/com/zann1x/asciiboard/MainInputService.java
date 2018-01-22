@@ -5,7 +5,6 @@ import android.inputmethodservice.InputMethodService;
 import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.KeyboardView;
 import android.os.IBinder;
-import android.renderscript.ScriptGroup;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -29,21 +28,20 @@ public class MainInputService extends InputMethodService implements KeyboardView
     @Override
     public void onCreate() {
         super.onCreate();
-        inputMethodManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
     }
 
     @Override
     public View onCreateInputView() {
         mainBoard = (LinearLayout) getLayoutInflater().inflate(R.layout.mainboard, null);
 
-        asciiBoardView = (RecyclerView) getLayoutInflater().inflate(R.layout.recyclerview, null);
+        asciiBoardView = mainBoard.findViewById(R.id.asciiboardview);
         asciiBoardView.setHasFixedSize(true);
-        asciiBoardView.setLayoutManager(new LinearLayoutManager(this));
         asciiBoardView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         asciiBoardView.setAdapter(new AsciiFaceAdapter(this, AsciiFaceData.asciiFaces));
 
         scrollView = mainBoard.findViewById(R.id.scrollview);
-        scrollView.addView(asciiBoardView);
+        scrollView.recomputeViewAttributes(asciiBoardView);
 
         keyboardView = mainBoard.findViewById(R.id.keyboardview);
         keyboardView.setKeyboard(new Keyboard(this, R.xml.keyboard));
