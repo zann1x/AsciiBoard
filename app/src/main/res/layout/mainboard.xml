@@ -9,7 +9,7 @@
     android:padding="0dp">
 
     <ScrollView
-        android:id="@+id/scrollview"
+        android:id="@+id/scroll_view"
         android:layout_width="match_parent"
         android:layout_height="250dp">
 
@@ -21,7 +21,7 @@
 
             <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/asciiboardview"
+                android:id="@+id/asciiboard_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#ffffff"
@@ -41,8 +41,8 @@
 
         <android.inputmethodservice.KeyboardView
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:id="@+id/keyboardview"
+            android:layout_height="wrap_content"
+            android:id="@+id/keyboard_view"
             android:keyBackground="@drawable/key_background" />
 
     </LinearLayout>

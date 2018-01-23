@@ -20,11 +20,6 @@ public class MainInputService extends InputMethodService implements KeyboardView
 
     private InputMethodManager inputMethodManager;
 
-    private LinearLayout mainBoard;
-    private ScrollView scrollView;
-    private RecyclerView asciiBoardView;
-    private KeyboardView keyboardView;
-
     @Override
     public void onCreate() {
         super.onCreate();
@@ -33,17 +28,24 @@ public class MainInputService extends InputMethodService implements KeyboardView
 
     @Override
     public View onCreateInputView() {
-        mainBoard = (LinearLayout) getLayoutInflater().inflate(R.layout.mainboard, null);
+        /*
+        // just for testing purposes, removed soon
+        AsciiFace af = new AsciiFace();
+        AsciiFaceData[] afd = af.readJsonData(getApplicationContext());
+        af.fillCategories(afd);
+        */
 
-        asciiBoardView = mainBoard.findViewById(R.id.asciiboardview);
+        LinearLayout mainBoard = (LinearLayout) getLayoutInflater().inflate(R.layout.mainboard, null);
+
+        RecyclerView asciiBoardView = mainBoard.findViewById(R.id.asciiboard_view);
         asciiBoardView.setHasFixedSize(true);
         asciiBoardView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
-        asciiBoardView.setAdapter(new AsciiFaceAdapter(this, AsciiFaceData.asciiFaces));
+        asciiBoardView.setAdapter(new AsciiFaceAdapter(this, AsciiFace.asciiFaces));
 
-        scrollView = mainBoard.findViewById(R.id.scrollview);
+        ScrollView scrollView = mainBoard.findViewById(R.id.scroll_view);
         scrollView.recomputeViewAttributes(asciiBoardView);
 
-        keyboardView = mainBoard.findViewById(R.id.keyboardview);
+        KeyboardView keyboardView = mainBoard.findViewById(R.id.keyboard_view);
         keyboardView.setKeyboard(new Keyboard(this, R.xml.keyboard));
         keyboardView.setOnKeyboardActionListener(this);
         keyboardView.setPreviewEnabled(false);
@@ -73,8 +75,8 @@ public class MainInputService extends InputMethodService implements KeyboardView
         InputConnection inputConnection = getCurrentInputConnection();
 
         String text = null;
-        if (0 <= primaryCode && primaryCode < AsciiFaceData.asciiFaces.size())
-            text = AsciiFaceData.asciiFaces.get(primaryCode);
+        if (0 <= primaryCode && primaryCode < AsciiFace.asciiFaces.size())
+            text = AsciiFace.asciiFaces.get(primaryCode);
 
         switch(primaryCode) {
             case Keyboard.KEYCODE_DONE:
