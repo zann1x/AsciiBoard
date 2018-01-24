@@ -36,14 +36,16 @@ public class MainInputService extends InputMethodService implements KeyboardView
         */
 
         LinearLayout mainBoard = (LinearLayout) getLayoutInflater().inflate(R.layout.mainboard, null);
-
+/*
+        RecyclerView categoryView = mainBoard.findViewById(R.id.category_view);
+        categoryView.setHasFixedSize(true);
+        categoryView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.HORIZONTAL));
+        categoryView.setAdapter(new CategoryAdapter(AsciiFaceCategory.values()));
+*/
         RecyclerView asciiBoardView = mainBoard.findViewById(R.id.asciiboard_view);
         asciiBoardView.setHasFixedSize(true);
         asciiBoardView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         asciiBoardView.setAdapter(new AsciiFaceAdapter(this, AsciiFace.asciiFaces));
-
-        ScrollView scrollView = mainBoard.findViewById(R.id.scroll_view);
-        scrollView.recomputeViewAttributes(asciiBoardView);
 
         KeyboardView keyboardView = mainBoard.findViewById(R.id.keyboard_view);
         keyboardView.setKeyboard(new Keyboard(this, R.xml.keyboard));

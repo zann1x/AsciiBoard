@@ -11,7 +11,7 @@ import java.util.List;
 
 public class AsciiFaceAdapter extends RecyclerView.Adapter<AsciiFaceHolder> {
 
-    MainInputService mainInputService;
+    private MainInputService mainInputService;
     private List<String> asciiFaces;
 
     public AsciiFaceAdapter(MainInputService mis, List<String> data) {

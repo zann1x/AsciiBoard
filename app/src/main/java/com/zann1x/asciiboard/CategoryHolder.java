@@ -4,13 +4,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-public class AsciiFaceHolder extends RecyclerView.ViewHolder {
+public class CategoryHolder extends RecyclerView.ViewHolder {
 
     public TextView textView;
 
-    public AsciiFaceHolder(View view) {
+    public CategoryHolder(View view) {
         super(view);
-        this.textView = view.findViewById(R.id.recycler_item);
+        textView = view.findViewById(R.id.recycler_category_item);
     }
 
 }
