@@ -14,38 +14,39 @@ import android.view.View;
 import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
+
+import java.util.List;
 
 public class MainInputService extends InputMethodService implements KeyboardView.OnKeyboardActionListener {
 
     private InputMethodManager inputMethodManager;
 
+    private AsciiFaceAdapter asciiFaceAdapter;
+    private AsciiFace asciiFace;
+    private RecyclerView asciiBoardView;
+    private AsciiFaceCategory currentCategory;
+
     @Override
     public void onCreate() {
         super.onCreate();
         inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        asciiFace = new AsciiFace(getApplicationContext());
+        currentCategory = AsciiFaceCategory.FLIP;
     }
 
     @Override
     public View onCreateInputView() {
-        /*
-        // just for testing purposes, removed soon
-        AsciiFace af = new AsciiFace();
-        AsciiFaceData[] afd = af.readJsonData(getApplicationContext());
-        af.fillCategories(afd);
-        */
-
         LinearLayout mainBoard = (LinearLayout) getLayoutInflater().inflate(R.layout.mainboard, null);
-/*
-        RecyclerView categoryView = mainBoard.findViewById(R.id.category_view);
-        categoryView.setHasFixedSize(true);
-        categoryView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.HORIZONTAL));
-        categoryView.setAdapter(new CategoryAdapter(AsciiFaceCategory.values()));
-*/
-        RecyclerView asciiBoardView = mainBoard.findViewById(R.id.asciiboard_view);
+
+        RecyclerView categoryView = mainBoard.findViewById(R.id.recycler_category_view);
+        categoryView.setAdapter(new CategoryAdapter(this, asciiFace.asciiFaceMap.keySet()));
+
+        asciiFaceAdapter = new AsciiFaceAdapter(this, asciiFace.asciiFaceMap.get(currentCategory));
+
+        asciiBoardView = mainBoard.findViewById(R.id.asciiboard_view);
         asciiBoardView.setHasFixedSize(true);
         asciiBoardView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
-        asciiBoardView.setAdapter(new AsciiFaceAdapter(this, AsciiFace.asciiFaces));
+        asciiBoardView.setAdapter(asciiFaceAdapter);
 
         KeyboardView keyboardView = mainBoard.findViewById(R.id.keyboard_view);
         keyboardView.setKeyboard(new Keyboard(this, R.xml.keyboard));
@@ -58,6 +59,12 @@ public class MainInputService extends InputMethodService implements KeyboardView
     @Override
     public View onCreateCandidatesView() {
         return super.onCreateCandidatesView();
+    }
+
+    public void switchCategory(AsciiFaceCategory newCategory) {
+        currentCategory = newCategory;
+        asciiFaceAdapter = new AsciiFaceAdapter(this, asciiFace.asciiFaceMap.get(currentCategory));
+        asciiBoardView.setAdapter(asciiFaceAdapter);
     }
 
     // Implementation of KeyboardView.OnKeyboardActionListener
@@ -77,8 +84,9 @@ public class MainInputService extends InputMethodService implements KeyboardView
         InputConnection inputConnection = getCurrentInputConnection();
 
         String text = null;
-        if (0 <= primaryCode && primaryCode < AsciiFace.asciiFaces.size())
-            text = AsciiFace.asciiFaces.get(primaryCode);
+        List<String> asciiFaces = asciiFace.asciiFaceMap.get(currentCategory);
+        if (0 <= primaryCode && primaryCode < asciiFaces.size())
+            text = asciiFaces.get(primaryCode);
 
         switch(primaryCode) {
             case Keyboard.KEYCODE_DONE:

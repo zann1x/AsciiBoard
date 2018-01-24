@@ -10,7 +10,7 @@ public class AsciiFaceHolder extends RecyclerView.ViewHolder {
 
     public AsciiFaceHolder(View view) {
         super(view);
-        this.textView = view.findViewById(R.id.recycler_item);
+        textView = view.findViewById(R.id.recycler_item);
     }
 
 }

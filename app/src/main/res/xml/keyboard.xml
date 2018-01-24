@@ -1,20 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Keyboard xmlns:android="http://schemas.android.com/apk/res/android"
     android:keyWidth="100%p"
-    android:keyHeight="46dp"
+    android:keyHeight="40dp"
     android:horizontalGap="3dp">
 
     <Row>
-        <!-- android:keyLabel="@string/globe_icon" -->
         <Key android:codes="-42" android:keyIcon="@drawable/sym_keyboard_language_switch" android:keyWidth="15%p" android:keyEdgeFlags="left" />
-
-        <!-- android:keyLabel="@string/open_box" -->
         <Key android:codes="-32" android:keyIcon="@drawable/sym_keyboard_space" android:keyWidth="55%p" />
-
-        <!-- android:keyLabel="@string/erase_to_the_left" -->
         <Key android:codes="-5" android:keyIcon="@drawable/sym_keyboard_delete" android:isRepeatable="true" android:keyWidth="15%p" />
-
-        <!-- android:keyLabel="@string/return_symbol" -->
         <Key android:codes="-4" android:keyIcon="@drawable/sym_keyboard_return" android:keyWidth="15%p" android:keyEdgeFlags="right"/>
     </Row>
 

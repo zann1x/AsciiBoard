@@ -7,32 +7,33 @@
     android:background="#ffffff"
     android:layout_margin="0dp"
     android:padding="0dp">
-<!--
+
     <HorizontalScrollView
         android:id="@+id/horizontal_scroll_view"
         android:layout_width="match_parent"
-        android:layout_height="30dp">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:id="@+id/horizontal_linear_layout"
+            android:orientation="horizontal"
+            android:background="#666666">
+
+            <!-- Buttons are added at view creation based on the amount of currently available categories -->
 
             <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/category_view"
+                android:id="@+id/recycler_category_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#ffffff"
-                android:clipToPadding="false"
-                android:padding="0dp"
+                android:orientation="horizontal"
                 app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
 
         </LinearLayout>
 
     </HorizontalScrollView>
--->
+
     <ScrollView
         android:id="@+id/scroll_view"
         android:layout_width="match_parent"
@@ -41,17 +42,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="#ffffff">
 
             <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/asciiboard_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#ffffff"
-                android:clipToPadding="false"
-                android:padding="0dp"
                 app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
 
         </LinearLayout>

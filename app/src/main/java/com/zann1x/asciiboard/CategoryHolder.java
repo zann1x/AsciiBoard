@@ -1,16 +1,15 @@
 package com.zann1x.asciiboard;
 
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.TextView;
+import android.widget.Button;
 
 public class CategoryHolder extends RecyclerView.ViewHolder {
 
-    public TextView textView;
+    public Button button;
 
-    public CategoryHolder(View view) {
-        super(view);
-        textView = view.findViewById(R.id.recycler_category_item);
+    public CategoryHolder(Button button) {
+        super(button);
+        this.button = button.findViewById(R.id.recycler_category_button);
     }
 
 }

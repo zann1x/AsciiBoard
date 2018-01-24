@@ -12,9 +12,13 @@ public enum AsciiFaceCategory {
     CRYING,
     @SerializedName("flip")
     FLIP,
+    @SerializedName("happy")
+    HAPPY,
     @SerializedName("other")
     OTHER,
     @SerializedName("shrug")
-    SHRUG
+    SHRUG,
+    @SerializedName("table")
+    TABLE
 
 }

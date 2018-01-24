@@ -14,9 +14,9 @@ public class AsciiFaceAdapter extends RecyclerView.Adapter<AsciiFaceHolder> {
     private MainInputService mainInputService;
     private List<String> asciiFaces;
 
-    public AsciiFaceAdapter(MainInputService mis, List<String> data) {
-        this.mainInputService = mis;
-        this.asciiFaces = data;
+    public AsciiFaceAdapter(MainInputService mainInputService, List<String> data) {
+        this.mainInputService = mainInputService;
+        asciiFaces = data;
     }
 
     @Override
@@ -24,8 +24,8 @@ public class AsciiFaceAdapter extends RecyclerView.Adapter<AsciiFaceHolder> {
         TextView textView = (TextView) LayoutInflater.from(parent.getContext()).inflate(R.layout.recycleritem, parent, false);
         textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         textView.setTextSize(32.f);
-        textView.setVerticalScrollBarEnabled(true);
         textView.setTextColor(Color.BLACK);
+        textView.setVerticalScrollBarEnabled(true);
 
         return new AsciiFaceHolder(textView);
     }
@@ -33,7 +33,6 @@ public class AsciiFaceAdapter extends RecyclerView.Adapter<AsciiFaceHolder> {
     @Override
     public void onBindViewHolder(AsciiFaceHolder holder, final int position) {
         holder.textView.setText(asciiFaces.get(position));
-
         holder.textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

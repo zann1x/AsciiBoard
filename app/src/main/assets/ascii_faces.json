@@ -4,11 +4,71 @@
     "face": "ʅʕ•ᴥ•ʔʃ"
   },
   {
+    "categories": ["bear"],
+    "face": "ʕ•ᴥ•ʔ"
+  },
+  {
+    "categories": ["bear", "happy"],
+    "face": "ʕᵔᴥᵔʔ"
+  },
+  {
+    "categories": ["bear"],
+    "face": "ʕ´•ᴥ•`ʔ"
+  },
+  {
+    "categories": ["angry"],
+    "face": "ಠ_ಠ"
+  },
+  {
     "categories": ["shrug"],
     "face": "¯\\_(ツ)_/¯"
   },
   {
-    "categories": ["flip"],
+    "categories": ["shrug"],
+    "face": "ʅ（´◔౪◔）ʃ"
+  },
+  {
+    "categories": ["shrug"],
+    "face": "¯\\_༼ ಥ ‿ ಥ ༽_/¯"
+  },
+  {
+    "categories": ["shrug"],
+    "face": "¯\\_(⊙︿⊙)_/¯"
+  },
+  {
+    "categories": ["flip", "table"],
     "face": "(╯°□°）╯︵ ┻━┻"
+  },
+  {
+    "categories": ["flip"],
+    "face": "(ノಠ ∩ಠ)ノ彡( \\o°o)\\"
+  },
+  {
+    "categories": ["flip", "table"],
+    "face": "┻━┻ ︵ヽ(`Д´)ﾉ︵ ┻━┻"
+  },
+  {
+    "categories": ["table"],
+    "face": "┬─┬⃰͡ (ᵔᵕᵔ͜ )"
+  },
+  {
+    "categories": ["table"],
+    "face": "┬─┬ ノ( ゜-゜ノ)"
+  },
+  {
+    "categories": ["other"],
+    "face": "♨_♨"
+  },
+  {
+    "categories": ["crying"],
+    "face": "(ಥ_ʖಥ)"
+  },
+  {
+    "categories": ["crying"],
+    "face": "ಥ_ಥ"
+  },
+  {
+    "categories": ["crying"],
+    "face": "ಥ﹏ಥ"
   }
 ]
