@@ -31,15 +31,17 @@ public class MainInputService extends InputMethodService implements KeyboardView
         super.onCreate();
         inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         asciiFace = new AsciiFace(getApplicationContext());
-        currentCategory = AsciiFaceCategory.FLIP;
+        currentCategory = asciiFace.asciiFaceMap.keySet().iterator().next();;
     }
 
     @Override
     public View onCreateInputView() {
         LinearLayout mainBoard = (LinearLayout) getLayoutInflater().inflate(R.layout.mainboard, null);
 
+        CategoryAdapter categoryAdapter = new CategoryAdapter(this, asciiFace.asciiFaceMap.keySet());
+
         RecyclerView categoryView = mainBoard.findViewById(R.id.recycler_category_view);
-        categoryView.setAdapter(new CategoryAdapter(this, asciiFace.asciiFaceMap.keySet()));
+        categoryView.setAdapter(categoryAdapter);
 
         asciiFaceAdapter = new AsciiFaceAdapter(this, asciiFace.asciiFaceMap.get(currentCategory));
 
