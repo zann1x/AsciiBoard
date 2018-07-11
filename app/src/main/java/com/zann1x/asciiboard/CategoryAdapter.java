@@ -13,9 +13,9 @@ import java.util.Set;
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryHolder> {
 
     private MainInputService mainInputService;
-    private List<AsciiFaceCategory> categories;
+    private List<Category> categories;
 
-    public CategoryAdapter(MainInputService mainInputService, Set<AsciiFaceCategory> data) {
+    public CategoryAdapter(MainInputService mainInputService, Set<Category> data) {
         this.mainInputService = mainInputService;
         categories = new ArrayList<>(data);
     }
@@ -27,8 +27,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryHolder> {
     }
 
     @Override
-    public void onBindViewHolder(CategoryHolder holder, final int position) {
-        final AsciiFaceCategory category = categories.get(position);
+    public void onBindViewHolder(final CategoryHolder holder, final int position) {
+        final Category category = categories.get(position);
         holder.button.setText(category.toString());
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -32,11 +32,12 @@ public class AsciiFaceAdapter extends RecyclerView.Adapter<AsciiFaceHolder> {
 
     @Override
     public void onBindViewHolder(AsciiFaceHolder holder, final int position) {
-        holder.textView.setText(asciiFaces.get(position));
+        final int pos = holder.getAdapterPosition();
+        holder.textView.setText(asciiFaces.get(pos));
         holder.textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mainInputService.onKey(position, null);
+                mainInputService.onKey(pos, null);
             }
         });
     }

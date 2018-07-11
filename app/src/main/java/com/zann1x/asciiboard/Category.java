@@ -2,7 +2,7 @@ package com.zann1x.asciiboard;
 
 import com.google.gson.annotations.SerializedName;
 
-public enum AsciiFaceCategory {
+public enum Category {
 
     @SerializedName("angry")
     ANGRY,

@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.Window;
 import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
@@ -24,14 +25,15 @@ public class MainInputService extends InputMethodService implements KeyboardView
     private AsciiFaceAdapter asciiFaceAdapter;
     private AsciiFace asciiFace;
     private RecyclerView asciiBoardView;
-    private AsciiFaceCategory currentCategory;
+    private Category currentCategory;
 
     @Override
     public void onCreate() {
         super.onCreate();
         inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         asciiFace = new AsciiFace(getApplicationContext());
-        currentCategory = asciiFace.asciiFaceMap.keySet().iterator().next();;
+        currentCategory = asciiFace.asciiFaceMap.keySet().iterator().next();
+        ;
     }
 
     @Override
@@ -63,7 +65,7 @@ public class MainInputService extends InputMethodService implements KeyboardView
         return super.onCreateCandidatesView();
     }
 
-    public void switchCategory(AsciiFaceCategory newCategory) {
+    public void switchCategory(Category newCategory) {
         currentCategory = newCategory;
         asciiFaceAdapter = new AsciiFaceAdapter(this, asciiFace.asciiFaceMap.get(currentCategory));
         asciiBoardView.setAdapter(asciiFaceAdapter);
@@ -73,12 +75,10 @@ public class MainInputService extends InputMethodService implements KeyboardView
 
     @Override
     public void onPress(int primaryCode) {
-
     }
 
     @Override
     public void onRelease(int primaryCode) {
-
     }
 
     @Override
@@ -90,23 +90,26 @@ public class MainInputService extends InputMethodService implements KeyboardView
         if (0 <= primaryCode && primaryCode < asciiFaces.size())
             text = asciiFaces.get(primaryCode);
 
-        switch(primaryCode) {
+        switch (primaryCode) {
             case Keyboard.KEYCODE_DONE:
                 inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER));
                 break;
             case Keyboard.KEYCODE_DELETE:
                 CharSequence selectedText = inputConnection.getSelectedText(0);
-                if(TextUtils.isEmpty(selectedText))
+                if (TextUtils.isEmpty(selectedText))
                     inputConnection.deleteSurroundingText(1, 0);
                 else
                     inputConnection.commitText("", 1);
                 break;
             case -32: // space
-                inputConnection.commitText(" " , 1);
+                inputConnection.commitText(" ", 1);
                 break;
             case -42: // switch to the next input method
-                IBinder imeToken = getWindow().getWindow().getAttributes().token;
-                inputMethodManager.switchToNextInputMethod(imeToken, false);
+                Window window = getWindow().getWindow();
+                if (window != null) {
+                    IBinder imeToken = window.getAttributes().token;
+                    inputMethodManager.switchToNextInputMethod(imeToken, false);
+                }
                 break;
             default:
                 inputConnection.commitText(String.valueOf((text == null) ? (char) primaryCode : text), 1);
@@ -115,26 +118,22 @@ public class MainInputService extends InputMethodService implements KeyboardView
 
     @Override
     public void onText(CharSequence text) {
-
     }
 
     @Override
     public void swipeLeft() {
-
     }
 
     @Override
     public void swipeRight() {
-
     }
 
     @Override
     public void swipeDown() {
-
     }
 
     @Override
     public void swipeUp() {
-
     }
+
 }

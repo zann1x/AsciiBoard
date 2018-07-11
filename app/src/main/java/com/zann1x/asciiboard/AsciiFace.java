@@ -9,9 +9,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class AsciiFace {
 
@@ -24,10 +24,10 @@ public class AsciiFace {
     http://kaomoji.ru/en/
      */
 
-    public Map<AsciiFaceCategory, List<String>> asciiFaceMap;
+    public Map<Category, List<String>> asciiFaceMap;
 
     public AsciiFace(Context context) {
-        asciiFaceMap = new HashMap<>();
+        asciiFaceMap = new TreeMap<>();
         fillCategories(readJsonData(context));
     }
 
@@ -48,16 +48,16 @@ public class AsciiFace {
         asciiFaceMap.clear();
 
         // TODO improve this approach
-        for (AsciiFaceCategory category : AsciiFaceCategory.values())
+        for (Category category : Category.values())
             asciiFaceMap.put(category, new ArrayList<String>());
 
         for (AsciiFaceData asciiFace : asciiFaceData) {
-            for (AsciiFaceCategory category : asciiFace.categories) {
+            for (Category category : asciiFace.categories) {
                 asciiFaceMap.get(category).add(asciiFace.face);
             }
         }
 
-        for (AsciiFaceCategory category : AsciiFaceCategory.values())
+        for (Category category : Category.values())
             if (asciiFaceMap.get(category).size() == 0)
                 asciiFaceMap.get(category).add("<nothing_found_here>");
     }
