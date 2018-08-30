@@ -1,9 +1,10 @@
-package com.zann1x.asciiboard;
+package com.zann1x.asciiboard.asciiface;
 
 import android.content.Context;
 
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
+import com.zann1x.asciiboard.category.Category;
 
 import java.io.IOException;
 import java.io.InputStream;

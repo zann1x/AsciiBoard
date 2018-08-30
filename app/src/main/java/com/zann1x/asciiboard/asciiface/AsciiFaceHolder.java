@@ -1,8 +1,10 @@
-package com.zann1x.asciiboard;
+package com.zann1x.asciiboard.asciiface;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
+
+import com.zann1x.asciiboard.R;
 
 public class AsciiFaceHolder extends RecyclerView.ViewHolder {
 

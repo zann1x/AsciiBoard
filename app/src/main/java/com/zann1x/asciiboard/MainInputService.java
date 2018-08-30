@@ -16,6 +16,11 @@ import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 
+import com.zann1x.asciiboard.asciiface.AsciiFace;
+import com.zann1x.asciiboard.asciiface.AsciiFaceAdapter;
+import com.zann1x.asciiboard.category.Category;
+import com.zann1x.asciiboard.category.CategoryAdapter;
+
 import java.util.List;
 
 public class MainInputService extends InputMethodService implements KeyboardView.OnKeyboardActionListener {

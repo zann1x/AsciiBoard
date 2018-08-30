@@ -1,7 +1,9 @@
-package com.zann1x.asciiboard;
+package com.zann1x.asciiboard.category;
 
 import android.support.v7.widget.RecyclerView;
 import android.widget.Button;
+
+import com.zann1x.asciiboard.R;
 
 public class CategoryHolder extends RecyclerView.ViewHolder {
 

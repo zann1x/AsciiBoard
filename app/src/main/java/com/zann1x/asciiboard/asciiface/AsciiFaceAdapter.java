@@ -1,4 +1,4 @@
-package com.zann1x.asciiboard;
+package com.zann1x.asciiboard.asciiface;
 
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
@@ -6,6 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.zann1x.asciiboard.MainInputService;
+import com.zann1x.asciiboard.R;
 
 import java.util.List;
 

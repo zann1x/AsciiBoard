@@ -1,4 +1,4 @@
-package com.zann1x.asciiboard;
+package com.zann1x.asciiboard.category;
 
 import com.google.gson.annotations.SerializedName;
 
